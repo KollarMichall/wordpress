@@ -37,6 +37,7 @@
 
 <body <?php body_class(); ?>>
 
+
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'myfirsttheme' ); ?></a>
 
@@ -58,7 +59,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="/"><img src="<?php bloginfo('stylesheet_directory');?>/assets/img/logo.png" alt="Bootstrap to Wordpress"></a>
+						<a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php bloginfo('stylesheet_directory');?>/assets/img/logo.png" alt="Bootstrap to Wordpress"></a>
 					</div>
 
 					<?php
@@ -75,3 +76,4 @@
 		
 		</div>
 	</header>
+	
