@@ -51,6 +51,7 @@ if ( ! function_exists( 'myfirsttheme_setup' ) ) :
 		register_nav_menus(
 			array(
 				'primary' => esc_html__( 'Primary', 'myfirsttheme' ),
+				'footer' => esc_html__( 'Footer', 'myfirsttheme' ),
 			)
 		);
 
@@ -129,8 +130,8 @@ function myfirsttheme_widgets_init() {
 			'description'   => esc_html__( 'Add widgets here.', 'myfirsttheme' ),
 			'before_widget' => '<section id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</section>',
-			'before_title'  => '<h2 class="widget-title">',
-			'after_title'   => '</h2>',
+			'before_title'  => '<h4 class="widget-title">',
+			'after_title'   => '</h4>',
 		)
 	);
 }
@@ -177,4 +178,12 @@ require get_template_directory() . '/inc/customizer.php';
 if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
+/**
+ * Replaces the excerpt "more" text by a link.
+ */
+function new_excerpt_more($more) {
+    global $post;
+	return '... <a class="moretag" href="'. get_permalink($post->ID) . '"> continue reading &raquo;</a>';
+}
+add_filter('excerpt_more', 'new_excerpt_more');
 

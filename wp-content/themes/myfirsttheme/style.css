@@ -446,7 +446,7 @@ a:hover {
 button, input, .btn, a.btn {
 	-webkit-font-smoothing: antialiased;
 	text-rendering: optimizelegibility;
-	color: white;
+	
 }
 
 .btn {

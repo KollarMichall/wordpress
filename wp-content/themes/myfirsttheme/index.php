@@ -23,40 +23,32 @@ get_header();
     <div class="container">
 	    <div class="row" id="primary">
 	    
-		    <main id="content" class="col-sm-8" role="main">
-			<?php
-		if ( have_posts() ) :
+		<main id="content" class="col-sm-8" role="main">
+			
+			<?php if ( have_posts() ) : ?>
 
-			if ( is_home() && ! is_front_page() ) :
-				?>
-				<header>
-					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
-				</header>
+			<?php /* Start the Loop */ ?>
+			<?php while ( have_posts() ) : the_post(); ?>
+
 				<?php
-			endif;
+					/* Include the Post-Format-specific template for the content.
+					 * If you want to override this in a child theme, then include a file
+					 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
+					 */
+					get_template_part( 'content', get_post_format() );
+				?>
 
-			/* Start the Loop */
-			while ( have_posts() ) :
-				the_post();
+			<?php endwhile; ?>
 
-				/*
-				 * Include the Post-Type-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', get_post_type() );
+			<?php the_post_navigation(); ?>
 
-			endwhile;
-
-			the_posts_navigation();
-
-		else :
-
-			get_template_part( 'template-parts/content', 'none' );
-
-		endif;
-		?>
-			</main>	
+			<?php else : ?>
+	
+				<?php get_template_part( 'content', 'none' ); ?>
+	
+			<?php endif; ?>
+			
+			</main><!-- content -->
 			<!-- SIDEBAR
 			================================================== -->
 		    <aside class="col-sm-4">
